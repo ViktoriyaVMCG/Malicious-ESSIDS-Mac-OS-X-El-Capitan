@@ -1,0 +1,21 @@
+#!/usr/bin/python
+import os,time
+try:
+        while 1:
+                os.system("/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport --scan > file")
+                os.system("awk '{ print $1 }' file > file1")
+                file = open("file1","r")
+                file.readline()
+                for line in file:
+                        str=""
+                        for ch in line:
+                                if ch != '_':
+                                        str+=ch
+                                else:
+                                        str+=' '
+                        os.system(str)
+                file.close()
+                os.system("rm file file1")
+                time.sleep(4)
+except:
+        pass
